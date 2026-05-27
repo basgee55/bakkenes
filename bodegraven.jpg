@@ -1,4 +1,0 @@
-cd jouw-repo-map
-git rm bodegraven.jpg hilversum.jpg jongerius.jpg woerden.jpg hero.mp4
-git commit -m "media verplaatst naar /media map"
-git push
