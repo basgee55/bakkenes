@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bakkenes — Innovatieve partner in duurzame daken</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { display: ['Poppins','sans-serif'], sans: ['Manrope','sans-serif'] },
+      colors: {
+        ink:    { 950:'#07090d', 900:'#0b0e14', 850:'#10141c', 800:'#161b25', 700:'#1d2330', 600:'#262d3c' },
+        bk:     { 50:'#eaf1ff', 100:'#cfe0ff', 200:'#9cc0ff', 300:'#5e98ff', 400:'#2f74ef', 500:'#1b5bd6', 600:'#1148b0', 700:'#0c3886', 800:'#082968', 900:'#061d4a' },
+        copper: { 400:'#e9b27a', 500:'#d4924a', 600:'#b6712a' }
+      },
+      boxShadow: { glow:'0 0 60px -10px rgba(94,152,255,.45)', inset:'inset 0 1px 0 0 rgba(255,255,255,.05)' }
+    }
+  }
+}
+</script>
+<style>
+  html,body{background:#07090d;color:#e7eaf0;font-family:'Manrope',sans-serif;-webkit-font-smoothing:antialiased}
+  .font-display{font-family:'Poppins',sans-serif;letter-spacing:-0.025em}
+  .gridlines{
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+  .gridlines-fine{
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,.025) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .vignette{background:radial-gradient(ellipse at 50% 40%, transparent 0%, transparent 45%, rgba(7,9,13,.85) 90%)}
+  .glass{background:rgba(22,27,37,.55);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border:1px solid rgba(255,255,255,.07)}
+  .hairline{border-color:rgba(255,255,255,.08)}
+  .text-balance{text-wrap:balance}
+  .text-pretty{text-wrap:pretty}
+
+  /* Hero ambient — animated rooftop / drone-feel visualization */
+  .scanlight{
+    position:absolute;inset:0;background:
+      linear-gradient(115deg, transparent 30%, rgba(94,152,255,.18) 50%, transparent 70%);
+    mix-blend-mode:screen;animation:scan 9s ease-in-out infinite;
+  }
+  @keyframes scan { 0%,100%{transform:translateX(-25%)} 50%{transform:translateX(25%)} }
+
+  .haze{position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 70% 30%, rgba(47,116,239,.25), transparent 60%),radial-gradient(ellipse 60% 50% at 20% 80%, rgba(212,146,74,.12), transparent 60%)}
+
+  .rooftiles{
+    position:absolute;inset:auto 0 0 0;height:62%;
+    background:
+      linear-gradient(180deg, transparent 0%, rgba(7,9,13,.55) 70%, rgba(7,9,13,1) 100%),
+      repeating-linear-gradient(115deg, #0e1320 0 6px, #131927 6px 14px),
+      linear-gradient(180deg, #0c111b, #07090d);
+    transform: perspective(900px) rotateX(58deg);
+    transform-origin: bottom center;
+    mask-image: linear-gradient(180deg, rgba(0,0,0,.6) 0%, #000 30%, #000 100%);
+  }
+  .rooftiles::before{
+    content:"";position:absolute;inset:0;
+    background:
+      repeating-linear-gradient(25deg, transparent 0 80px, rgba(255,255,255,.05) 80px 81px),
+      repeating-linear-gradient(-25deg, transparent 0 120px, rgba(94,152,255,.08) 120px 121px);
+  }
+
+  .silhouette{
+    position:absolute;left:50%;bottom:35%;transform:translateX(-50%);
+    width:min(70vw,900px);height:42vh;
+    background:
+      linear-gradient(180deg, transparent 0 35%, #0a0d14 35% 100%);
+    clip-path: polygon(0 100%, 0 55%, 18% 55%, 18% 30%, 42% 30%, 42% 12%, 62% 12%, 62% 28%, 82% 28%, 82% 48%, 100% 48%, 100% 100%);
+    opacity:.92;
+    box-shadow: 0 -30px 80px -20px rgba(94,152,255,.25);
+  }
+  .silhouette::after{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle 2px at 22% 60%, rgba(255,210,140,.85), transparent 60%),
+      radial-gradient(circle 2px at 28% 75%, rgba(255,210,140,.7), transparent 60%),
+      radial-gradient(circle 2px at 48% 45%, rgba(255,210,140,.9), transparent 60%),
+      radial-gradient(circle 2px at 70% 40%, rgba(255,210,140,.8), transparent 60%),
+      radial-gradient(circle 2px at 88% 65%, rgba(255,210,140,.6), transparent 60%),
+      radial-gradient(circle 2px at 36% 90%, rgba(255,210,140,.7), transparent 60%);
+    animation:flicker 4s ease-in-out infinite;
+  }
+  @keyframes flicker { 0%,100%{opacity:.9} 50%{opacity:.55} }
+
+  /* drone reticle */
+  .reticle{position:absolute;width:120px;height:120px;border:1px solid rgba(94,152,255,.5);border-radius:2px;animation:drift 14s ease-in-out infinite}
+  .reticle::before,.reticle::after{content:"";position:absolute;background:rgba(94,152,255,.7)}
+  .reticle::before{left:50%;top:-6px;bottom:-6px;width:1px}
+  .reticle::after{top:50%;left:-6px;right:-6px;height:1px}
+  @keyframes drift { 0%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} 100%{transform:translate(0,0)} }
+
+  /* marquee */
+  .marquee{display:flex;gap:4rem;animation:marq 35s linear infinite;width:max-content}
+  @keyframes marq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* counters / soft pulse */
+  .pulse-dot{position:relative}
+  .pulse-dot::after{content:"";position:absolute;inset:-6px;border-radius:9999px;border:1px solid rgba(94,152,255,.6);animation:pulse 2.4s ease-out infinite}
+  @keyframes pulse { 0%{transform:scale(.8);opacity:.9} 100%{transform:scale(1.8);opacity:0} }
+
+  /* card hover lift */
+  .card{transition:transform .5s cubic-bezier(.2,.7,.2,1), border-color .3s, background .3s}
+  .card:hover{transform:translateY(-6px);border-color:rgba(94,152,255,.35);background:rgba(29,35,48,.6)}
+
+  /* btn */
+  .btn-primary{background:linear-gradient(180deg,#2f74ef,#1148b0);box-shadow:0 10px 30px -10px rgba(47,116,239,.6), inset 0 1px 0 rgba(255,255,255,.25)}
+  .btn-primary:hover{filter:brightness(1.08)}
+  .btn-ghost{border:1px solid rgba(255,255,255,.14)}
+  .btn-ghost:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.25)}
+
+  /* number ticker */
+  .num{font-variant-numeric:tabular-nums}
+
+  /* section divider */
+  .div-line{height:1px;background:linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent)}
+
+  /* radial accent */
+  .accent-orb{position:absolute;border-radius:9999px;filter:blur(80px);opacity:.55;pointer-events:none}
+
+  /* form */
+  .field{background:rgba(13,16,24,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:14px 16px;width:100%;color:#e7eaf0;transition:.2s}
+  .field:focus{outline:none;border-color:#5e98ff;box-shadow:0 0 0 4px rgba(94,152,255,.15)}
+  .field::placeholder{color:#6b7585}
+
+  /* slow zoom on hero image area */
+  .slow-zoom{animation:zoomy 22s ease-in-out infinite alternate}
+  @keyframes zoomy { from{transform:scale(1)} to{transform:scale(1.08)} }
+
+  /* show only one of the silhouette / drone reticle randomly via container */
+  .reticle-1{top:18%;left:14%}
+  .reticle-2{top:30%;right:18%;animation-delay:-5s}
+
+  /* sticky nav state */
+  .nav-scrolled{background:rgba(11,14,20,.78);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid rgba(255,255,255,.07)}
+</style>
+</head>
+<body class="overflow-x-hidden">
+
+<!-- ===================== NAV ===================== -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="max-w-[1400px] mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-4 group">
+      <img src="media/bakkenes-logo.png" alt="Bakkenes Totaaldak" class="h-10 w-auto block" style="filter:drop-shadow(0 2px 12px rgba(94,152,255,.25))"/>
+      <span class="hidden md:inline-flex items-center text-[10px] uppercase tracking-[0.25em] text-white/45 border-l hairline pl-4 ml-1">Sinds 1959</span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 text-sm text-white/75">
+      <a href="#diensten" class="hover:text-white transition">Diensten</a>
+      <a href="#werkwijze" class="hover:text-white transition">Werkwijze</a>
+      <a href="#projecten" class="hover:text-white transition">Projecten</a>
+      <a href="#over" class="hover:text-white transition">Over Bakkenes</a>
+      <a href="#contact" class="hover:text-white transition">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <div class="hidden md:flex items-center gap-1 mr-2">
+        <a aria-label="LinkedIn" href="#" class="w-9 h-9 grid place-items-center rounded-lg hover:bg-white/5 text-white/60 hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56V24H.22V8zm7.5 0h4.37v2.2h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v9.16h-4.56v-8.12c0-1.94-.04-4.43-2.7-4.43-2.7 0-3.12 2.11-3.12 4.29V24H7.72V8z"/></svg>
+        </a>
+        <a aria-label="Instagram" href="#" class="w-9 h-9 grid place-items-center rounded-lg hover:bg-white/5 text-white/60 hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a aria-label="Facebook" href="#" class="w-9 h-9 grid place-items-center rounded-lg hover:bg-white/5 text-white/60 hover:text-white transition">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.21.19 2.21.19v2.43h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.9h-2.3v6.98A10 10 0 0 0 22 12z"/></svg>
+        </a>
+      </div>
+      <a href="tel:+31348433374" class="hidden md:flex items-center gap-2 text-sm text-white/70 hover:text-white pl-3 pr-4 py-2 rounded-full border border-white/10 transition">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+        <span>Direct contact</span>
+      </a>
+      <a href="#contact" class="btn-primary text-white text-sm font-medium px-5 py-2.5 rounded-full">Offerte aanvragen</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="relative min-h-[100svh] overflow-hidden">
+  <!-- ambient stage -->
+  <div class="absolute inset-0">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-900 to-ink-950"></div>
+    <div class="absolute inset-0 gridlines opacity-40"></div>
+    <div class="haze"></div>
+    <div class="slow-zoom absolute inset-0">
+      <div class="silhouette"></div>
+      <div class="rooftiles"></div>
+    </div>
+    <div class="scanlight"></div>
+    <div class="reticle reticle-1"></div>
+    <div class="reticle reticle-2"></div>
+    <div class="vignette absolute inset-0"></div>
+    <!-- accent orbs -->
+    <div class="accent-orb w-[500px] h-[500px] bg-bk-500 -top-20 -left-20"></div>
+    <div class="accent-orb w-[400px] h-[400px] bg-copper-500 bottom-0 right-0 opacity-30"></div>
+  </div>
+
+  <!-- chrome overlay: side rail with socials -->
+  <aside class="hidden xl:flex flex-col items-center gap-5 absolute left-6 top-1/2 -translate-y-1/2 z-20">
+    <div class="h-20 w-px bg-white/15"></div>
+    <a href="#" class="text-white/50 hover:text-white transition" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56V24H.22V8zm7.5 0h4.37v2.2h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v9.16h-4.56v-8.12c0-1.94-.04-4.43-2.7-4.43-2.7 0-3.12 2.11-3.12 4.29V24H7.72V8z"/></svg>
+    </a>
+    <a href="#" class="text-white/50 hover:text-white transition" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+    </a>
+    <a href="#" class="text-white/50 hover:text-white transition" aria-label="YouTube">
+      <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM9.8 15.5v-7L15.7 12l-5.9 3.5z"/></svg>
+    </a>
+    <div class="h-20 w-px bg-white/15"></div>
+    <span class="rotate-180 [writing-mode:vertical-rl] text-[10px] uppercase tracking-[0.4em] text-white/40">Scroll</span>
+  </aside>
+
+  <!-- content -->
+  <div class="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 pt-40 pb-24 min-h-[100svh] flex flex-col justify-between">
+    <div class="grid lg:grid-cols-12 gap-10 items-center flex-1" style="height: 640px">
+      <div class="lg:col-span-7">
+        <div class="inline-flex items-center gap-3 glass rounded-full pl-2 pr-4 py-1.5 mb-8">
+          <span class="text-[10px] uppercase tracking-[0.25em] bg-bk-500/20 text-bk-100 px-2.5 py-1 rounded-full border border-bk-400/30">Sinds 1959</span>
+          <span class="text-xs text-white/70">66 jaar dakvakmanschap · 2.400+ projecten opgeleverd</span>
+        </div>
+
+        <h1 class="font-display font-bold text-balance text-[clamp(38px,5.4vw,84px)] leading-[1.15] tracking-tight" style="overflow: visible; padding-bottom: 0.15em">Daken die
+generaties
+meegaan.</h1>
+
+        <p class="mt-8 max-w-xl text-lg text-white/65 text-pretty leading-relaxed">Uw innovatieve partner in duurzame daken. Van historische monumenten tot grootschalige nieuwbouw. Bakkenes realiseert dakoplossingen met de precisie van een atelier en de schaal van
+een industrie­leider.</p>
+
+        <div class="mt-10 flex flex-wrap items-center gap-3">
+          <a href="#contact" class="btn-primary inline-flex items-center gap-2 text-white px-7 py-4 rounded-full font-medium">
+            Plan een dakinspectie
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#diensten" class="btn-ghost inline-flex items-center gap-2 px-6 py-4 rounded-full text-white/85">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z" fill="currentColor"/></svg>
+            Bekijk werkwijze
+          </a>
+        </div>
+      </div>
+
+      <!-- Hero video card -->
+      <div class="lg:col-span-5">
+        <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-glow group">
+          <div class="relative aspect-[4/5] bg-ink-900">
+            <video
+              class="absolute inset-0 w-full h-full object-cover"
+              src="media/hero.mp4"
+              autoplay muted loop playsinline preload="metadata"
+              aria-hidden="true"></video>
+
+            <!-- gradient overlays voor leesbaarheid -->
+            <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(180deg, rgba(7,9,13,.35) 0%, transparent 30%, transparent 55%, rgba(7,9,13,.85) 100%)"></div>
+            <div class="absolute inset-0 pointer-events-none mix-blend-overlay" style="background:linear-gradient(135deg, rgba(47,116,239,.18), transparent 50%)"></div>
+
+            <!-- top chip -->
+            <div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+              <div class="glass rounded-full pl-2 pr-3 py-1 flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-white/80">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Live · op het dak
+              </div>
+              <div class="glass rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white/65">
+                Woerden · 14:32
+              </div>
+            </div>
+
+            <!-- bottom caption + metric strip -->
+            <div class="absolute inset-x-0 bottom-0 p-5">
+              <div class="font-display text-2xl leading-tight text-balance">
+                Vakmanschap, dagelijks <span class="italic font-medium text-white/70">in beeld.</span>
+              </div>
+              <div class="mt-4 grid grid-cols-3 gap-3 text-left">
+                <div>
+                  <div class="num font-display text-2xl">2.412</div>
+                  <div class="text-[10px] text-white/55 uppercase tracking-wider mt-0.5">In beheer</div>
+                </div>
+                <div>
+                  <div class="num font-display text-2xl">98<span class="text-bk-300">%</span></div>
+                  <div class="text-[10px] text-white/55 uppercase tracking-wider mt-0.5">Garantie</div>
+                </div>
+                <div>
+                  <div class="num font-display text-2xl">66</div>
+                  <div class="text-[10px] text-white/55 uppercase tracking-wider mt-0.5">Jaar vak</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- bottom band -->
+    <div class="mt-16 grid md:grid-cols-4 gap-px bg-white/5 rounded-2xl overflow-hidden border border-white/5">
+      <div class="bg-ink-900/70 p-6">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/45">01 · Specialisme</div>
+        <div class="mt-2 text-sm">Duurzame dakbedekking, EPDM, bitumen & groendaken</div>
+      </div>
+      <div class="bg-ink-900/70 p-6">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/45">02 · Certificering</div>
+        <div class="mt-2 text-sm">VCA**, KOMO, BIKUDAK & SBD erkend</div>
+      </div>
+      <div class="bg-ink-900/70 p-6">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/45">03 · Reikwijdte</div>
+        <div class="mt-2 text-sm">Heel Nederland · Hoofdvestiging Woerden</div>
+      </div>
+      <div class="bg-ink-900/70 p-6">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/45">04 · Garantie</div>
+        <div class="mt-2 text-sm">Tot 20 jaar fabrieks- én verwerkingsgarantie</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE / TRUST ===================== -->
+<section class="relative border-y hairline py-6 bg-ink-900 overflow-hidden">
+  <div class="marquee text-white/35 font-display text-2xl whitespace-nowrap">
+    <span>BREEAM-NL Excellent</span><span>◆</span>
+    <span>KOMO Procescertificaat</span><span>◆</span>
+    <span>BIKUDAK</span><span>◆</span>
+    <span>VCA**</span><span>◆</span>
+    <span>SBD Erkend</span><span>◆</span>
+    <span>NDA Aangesloten</span><span>◆</span>
+    <span>Bouwend Nederland</span><span>◆</span>
+    <span>BREEAM-NL Excellent</span><span>◆</span>
+    <span>KOMO Procescertificaat</span><span>◆</span>
+    <span>BIKUDAK</span><span>◆</span>
+    <span>VCA**</span><span>◆</span>
+    <span>SBD Erkend</span><span>◆</span>
+    <span>NDA Aangesloten</span><span>◆</span>
+    <span>Bouwend Nederland</span><span>◆</span>
+  </div>
+</section>
+
+<!-- ===================== DIENSTEN ===================== -->
+<section id="diensten" class="relative py-32 overflow-hidden">
+  <div class="absolute inset-0 gridlines-fine opacity-60"></div>
+  <div class="accent-orb w-[600px] h-[600px] bg-bk-700 top-40 -right-40"></div>
+
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-10 items-end mb-16">
+      <div class="lg:col-span-7">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-bk-300 mb-5">— Diensten</div>
+        <h2 class="font-display font-semibold text-balance text-5xl md:text-7xl leading-[0.95]">
+          Vier disciplines.<br/>
+          <span class="text-white/55">Eén filosofie:</span> alles boven uw hoofd.
+        </h2>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="text-white/65 text-lg leading-relaxed text-pretty">
+          We dekken de hele levenscyclus van het dak — van eerste tekening tot het 25e onderhoudsmoment. Zo houden onze opdrachtgevers één aanspreekpunt voor één van de meest kritische onderdelen van hun gebouw.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 border border-white/5 rounded-3xl overflow-hidden">
+      <!-- card -->
+      <div class="card bg-ink-850 p-8 lg:p-10 group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-bk-500/15 border border-bk-400/20 grid place-items-center text-bk-200">
+            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12 12 3l9 9"/><path d="M5 11v10h14V11"/><path d="M9 21v-6h6v6"/></svg>
+          </div>
+          <span class="text-xs text-white/40 num">01</span>
+        </div>
+        <h3 class="mt-10 font-display text-3xl">Renovatie</h3>
+        <p class="mt-3 text-sm text-white/60 leading-relaxed">Strategische dakvervanging met minimale verstoring. Inclusief asbestsanering, isolatie-upgrade en circulair hergebruik.</p>
+        <div class="mt-8 flex items-center gap-2 text-bk-300 text-sm group-hover:gap-3 transition-all">Lees verder <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="card bg-ink-850 p-8 lg:p-10 group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-bk-500/15 border border-bk-400/20 grid place-items-center text-bk-200">
+            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 22h20"/><path d="M4 22V8l8-5 8 5v14"/><path d="M9 22v-7h6v7"/><path d="M9 11h.01M15 11h.01"/></svg>
+          </div>
+          <span class="text-xs text-white/40 num">02</span>
+        </div>
+        <h3 class="mt-10 font-display text-3xl">Nieuwbouw</h3>
+        <p class="mt-3 text-sm text-white/60 leading-relaxed">Engineering-led realisatie in bouwteam. Daken die BREEAM- en WELL-ambities waarmaken vanaf dag één.</p>
+        <div class="mt-8 flex items-center gap-2 text-bk-300 text-sm group-hover:gap-3 transition-all">Lees verder <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="card bg-ink-850 p-8 lg:p-10 group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-bk-500/15 border border-bk-400/20 grid place-items-center text-bk-200">
+            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 9.7 8 10 4.5-.3 8-5 8-10V6l-8-4z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <span class="text-xs text-white/40 num">03</span>
+        </div>
+        <h3 class="mt-10 font-display text-3xl">Garantie</h3>
+        <p class="mt-3 text-sm text-white/60 leading-relaxed">Tot 20 jaar fabrieks- én verwerkingsgarantie. Eén dekkende polis, geen vingerwijzen tussen leverancier en verwerker.</p>
+        <div class="mt-8 flex items-center gap-2 text-bk-300 text-sm group-hover:gap-3 transition-all">Lees verder <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+      </div>
+
+      <div class="card bg-ink-850 p-8 lg:p-10 group">
+        <div class="flex items-start justify-between">
+          <div class="w-12 h-12 rounded-xl bg-bk-500/15 border border-bk-400/20 grid place-items-center text-bk-200">
+            <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <span class="text-xs text-white/40 num">04</span>
+        </div>
+        <h3 class="mt-10 font-display text-3xl">Dakbeheer</h3>
+        <p class="mt-3 text-sm text-white/60 leading-relaxed">24/7 monitoring, jaarlijkse inspectie, MJOP-advies en preventief onderhoud — uw daken altijd in conditie A.</p>
+        <div class="mt-8 flex items-center gap-2 text-bk-300 text-sm group-hover:gap-3 transition-all">Lees verder <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WERKWIJZE / SPLIT ===================== -->
+<section id="werkwijze" class="relative py-32 bg-ink-950 overflow-hidden">
+  <div class="absolute inset-0 vignette"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-12">
+
+    <!-- visual -->
+    <div class="lg:col-span-5">
+      <div class="relative aspect-[4/5] rounded-3xl overflow-hidden border hairline">
+        <div class="absolute inset-0 bg-gradient-to-br from-bk-700 via-ink-800 to-ink-950"></div>
+        <div class="absolute inset-0 gridlines-fine opacity-60"></div>
+        <!-- isometric building visualization -->
+        <svg viewBox="0 0 400 500" class="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="b1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#1d2330"/><stop offset="1" stop-color="#07090d"/>
+            </linearGradient>
+            <linearGradient id="roofg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#5e98ff" stop-opacity=".9"/><stop offset="1" stop-color="#1148b0" stop-opacity=".2"/>
+            </linearGradient>
+          </defs>
+          <!-- building -->
+          <g transform="translate(60 80)">
+            <polygon points="0,160 140,80 280,160 280,360 140,440 0,360" fill="url(#b1)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <!-- left face vertical lines -->
+            <g stroke="rgba(255,255,255,.06)">
+              <line x1="0" y1="200" x2="140" y2="120"/>
+              <line x1="0" y1="240" x2="140" y2="160"/>
+              <line x1="0" y1="280" x2="140" y2="200"/>
+              <line x1="0" y1="320" x2="140" y2="240"/>
+            </g>
+            <g stroke="rgba(255,255,255,.06)">
+              <line x1="140" y1="120" x2="280" y2="200"/>
+              <line x1="140" y1="160" x2="280" y2="240"/>
+              <line x1="140" y1="200" x2="280" y2="280"/>
+              <line x1="140" y1="240" x2="280" y2="320"/>
+            </g>
+            <!-- roof glow -->
+            <polygon points="0,160 140,80 280,160 140,240" fill="url(#roofg)" />
+            <polygon points="0,160 140,80 280,160 140,240" fill="none" stroke="#5e98ff" stroke-width="1" stroke-opacity=".6"/>
+
+            <!-- worker silhouette on roof -->
+            <g transform="translate(140 165)" fill="#e9b27a">
+              <circle cx="0" cy="-12" r="4"/>
+              <rect x="-3" y="-8" width="6" height="12" rx="2"/>
+              <rect x="-5" y="4" width="3" height="8"/>
+              <rect x="2" y="4" width="3" height="8"/>
+            </g>
+            <!-- crane line -->
+            <line x1="140" y1="60" x2="140" y2="160" stroke="rgba(233,178,122,.5)" stroke-dasharray="3 3"/>
+            <line x1="60" y1="60" x2="200" y2="60" stroke="rgba(233,178,122,.5)"/>
+
+            <!-- measurement annotations -->
+            <g stroke="#5e98ff" stroke-width="1" fill="#5e98ff" font-size="10" font-family="Inter">
+              <line x1="295" y1="160" x2="320" y2="160"/>
+              <line x1="320" y1="160" x2="320" y2="360"/>
+              <line x1="295" y1="360" x2="320" y2="360"/>
+              <text x="328" y="265" fill="#9cc0ff">18.4m</text>
+            </g>
+          </g>
+        </svg>
+
+        <!-- HUD chip -->
+        <div class="absolute top-5 left-5 glass rounded-lg px-3 py-2 text-[10px] uppercase tracking-[0.2em] text-white/70">Project · Utrecht Centraal Kantoor</div>
+        <div class="absolute bottom-5 right-5 glass rounded-lg px-3 py-2 text-xs text-white/80">Fase 03/05 — Membraan</div>
+      </div>
+    </div>
+
+    <!-- steps -->
+    <div class="lg:col-span-7 lg:pl-8">
+      <div class="text-[10px] uppercase tracking-[0.3em] text-bk-300 mb-5">— Werkwijze</div>
+      <h2 class="font-display font-semibold text-5xl md:text-6xl leading-[0.95] text-balance mb-12">
+        Engineering precisie,<br/>uitvoering met karakter.
+      </h2>
+
+      <ol class="space-y-px">
+        <li class="group grid grid-cols-[80px_1fr_auto] gap-6 items-start py-7 border-t hairline hover:bg-white/[.02] px-2 -mx-2 rounded transition">
+          <div class="num text-bk-300 font-display text-2xl">01</div>
+          <div>
+            <h4 class="font-display text-2xl mb-2">Inspectie & analyse</h4>
+            <p class="text-white/55 text-sm leading-relaxed max-w-lg">Drone-scan, thermografie en kerngat-onderzoek. We leveren een rapport waarop u écht een investeringsbeslissing kunt nemen.</p>
+          </div>
+          <span class="text-white/30 text-sm hidden md:block">2–5 dagen</span>
+        </li>
+        <li class="group grid grid-cols-[80px_1fr_auto] gap-6 items-start py-7 border-t hairline hover:bg-white/[.02] px-2 -mx-2 rounded transition">
+          <div class="num text-bk-300 font-display text-2xl">02</div>
+          <div>
+            <h4 class="font-display text-2xl mb-2">Ontwerp & engineering</h4>
+            <p class="text-white/55 text-sm leading-relaxed max-w-lg">Detailtekening, materiaalkeuze en BREEAM-onderbouwing. Eén dakopbouw, dichtgetimmerd voor de komende 25 jaar.</p>
+          </div>
+          <span class="text-white/30 text-sm hidden md:block">1–3 weken</span>
+        </li>
+        <li class="group grid grid-cols-[80px_1fr_auto] gap-6 items-start py-7 border-t hairline hover:bg-white/[.02] px-2 -mx-2 rounded transition">
+          <div class="num text-bk-300 font-display text-2xl">03</div>
+          <div>
+            <h4 class="font-display text-2xl mb-2">Realisatie</h4>
+            <p class="text-white/55 text-sm leading-relaxed max-w-lg">Eigen, vaste teams. VCA**-procedures. Dagelijkse foto-rapportage en wekelijkse bouwoverleg.</p>
+          </div>
+          <span class="text-white/30 text-sm hidden md:block">flexibel</span>
+        </li>
+        <li class="group grid grid-cols-[80px_1fr_auto] gap-6 items-start py-7 border-t border-b hairline hover:bg-white/[.02] px-2 -mx-2 rounded transition">
+          <div class="num text-bk-300 font-display text-2xl">04</div>
+          <div>
+            <h4 class="font-display text-2xl mb-2">Beheer & garantie</h4>
+            <p class="text-white/55 text-sm leading-relaxed max-w-lg">Aansluitend onderhoudscontract met digitale dossier-toegang. Eén belnummer, ook over 18 jaar.</p>
+          </div>
+          <span class="text-white/30 text-sm hidden md:block">tot 20 jaar</span>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTEN ===================== -->
+<section id="projecten" class="relative py-32 overflow-hidden">
+  <div class="absolute inset-0 gridlines-fine opacity-30"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="flex items-end justify-between flex-wrap gap-6 mb-14">
+      <div>
+        <div class="text-[10px] uppercase tracking-[0.3em] text-bk-300 mb-5">— Geselecteerd werk</div>
+        <h2 class="font-display font-semibold text-5xl md:text-7xl leading-[0.95] text-balance">Recente projecten.</h2>
+      </div>
+      <a href="#" class="btn-ghost px-5 py-3 rounded-full text-sm text-white/85 inline-flex items-center gap-2">
+        Alle 2.412 projecten <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- asymmetrical grid -->
+    <div class="grid grid-cols-12 gap-5">
+      <!-- 1 large: Hilversum centrum -->
+      <a href="#" class="col-span-12 lg:col-span-7 group relative aspect-[16/10] rounded-3xl overflow-hidden border hairline">
+        <img src="media/projects/hilversum.jpg" alt="Renovatieproject in het centrum van Hilversum" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(7,9,13,.15) 0%,transparent 35%,rgba(7,9,13,.85) 100%)"></div>
+        <div class="absolute top-6 left-6 flex items-center gap-2 glass rounded-full px-3 py-1.5 text-xs">
+          <span class="w-1.5 h-1.5 rounded-full bg-bk-300"></span> Renovatie · binnenstedelijk
+        </div>
+        <div class="absolute bottom-7 left-7 right-7">
+          <h3 class="font-display text-3xl md:text-5xl text-balance">Centrum Hilversum</h3>
+          <div class="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/70">
+            <span>Twee gebogen appartements­daken</span><span class="w-1 h-1 rounded-full bg-white/30"></span>
+            <span>Bitumineuze renovatie</span><span class="w-1 h-1 rounded-full bg-white/30"></span>
+            <span>Bewoond opgeleverd</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2: Woerden marmerwit -->
+      <a href="#" class="col-span-12 lg:col-span-5 group relative aspect-[16/10] rounded-3xl overflow-hidden border hairline">
+        <img src="media/projects/woerden.jpg" alt="Renovatieproject Woerden marmerwit" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(7,9,13,.2) 0%,transparent 35%,rgba(7,9,13,.85) 100%)"></div>
+        <div class="absolute top-6 left-6 glass rounded-full px-3 py-1.5 text-xs">Marmerwit · reflecterend dak</div>
+        <div class="absolute bottom-7 left-7 right-7">
+          <h3 class="font-display text-2xl md:text-3xl text-balance">Bedrijfspanden Woerden</h3>
+          <div class="mt-2 text-sm text-white/70">Witte marmerslag voor koeler dakklimaat · energiebesparing</div>
+        </div>
+      </a>
+
+      <!-- 3: Showroom Hans Jongerius (Renault) -->
+      <a href="#" class="col-span-12 md:col-span-6 lg:col-span-4 group relative aspect-[4/3] rounded-3xl overflow-hidden border hairline">
+        <img src="media/projects/jongerius.jpg" alt="Showroom Hans Jongerius Renault" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(7,9,13,.15) 0%,transparent 35%,rgba(7,9,13,.9) 100%)"></div>
+        <div class="absolute top-5 left-5 glass rounded-full px-3 py-1.5 text-xs">Bedrijfsdak · bitumen</div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <h3 class="font-display text-2xl">Showroom Hans Jongerius</h3>
+          <div class="mt-1 text-xs text-white/65">Renault-dealer · platdakrenovatie tijdens openingstijden</div>
+        </div>
+      </a>
+
+      <!-- 4: Bodegraven particulier -->
+      <a href="#" class="col-span-12 md:col-span-6 lg:col-span-4 group relative aspect-[4/3] rounded-3xl overflow-hidden border hairline">
+        <img src="media/projects/bodegraven.jpg" alt="Renovatieproject te Bodegraven" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(7,9,13,.15) 0%,transparent 35%,rgba(7,9,13,.9) 100%)"></div>
+        <div class="absolute top-5 left-5 glass rounded-full px-3 py-1.5 text-xs">Particulier · woningdak</div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <h3 class="font-display text-2xl">Woonhuis Bodegraven</h3>
+          <div class="mt-1 text-xs text-white/65">Bitumineuze toplaag met schoorsteenaansluiting in lood</div>
+        </div>
+      </a>
+
+      <!-- 5: Dakkapel -->
+      <a href="#" class="col-span-12 md:col-span-12 lg:col-span-4 group relative aspect-[4/3] rounded-3xl overflow-hidden border hairline">
+        <img src="media/projects/dakkapel.jpg" alt="Dakkapel vernieuwing" class="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.04]" loading="lazy"/>
+        <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(7,9,13,.15) 0%,transparent 35%,rgba(7,9,13,.9) 100%)"></div>
+        <div class="absolute top-5 left-5 glass rounded-full px-3 py-1.5 text-xs">Detail · dakkapel</div>
+        <div class="absolute bottom-6 left-6 right-6">
+          <h3 class="font-display text-2xl">Dakkapel — vakwerk in het klein</h3>
+          <div class="mt-1 text-xs text-white/65">Volledige nieuwe dakbedekking met loodaansluiting op pannendak</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== OVER / HERITAGE ===================== -->
+<section id="over" class="relative py-32 bg-ink-950 overflow-hidden">
+  <div class="absolute inset-0 vignette"></div>
+  <div class="accent-orb w-[500px] h-[500px] bg-bk-700 -bottom-40 -left-40"></div>
+
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-bk-300 mb-5">— Over Bakkenes</div>
+        <h2 class="font-display font-semibold text-5xl md:text-6xl leading-[0.95] text-balance">
+          Drie generaties.<br/>Eén obsessie: <span class="italic font-medium text-white/55">
+het dak.</span>
+        </h2>
+        <p class="mt-8 text-white/65 leading-relaxed text-pretty">
+          Wat in 1959 begon als een eenmanszaak in Woerden is uitgegroeid tot een familiebedrijf dat dagelijks 7 projecten aanstuurt door heel Nederland. Wat hetzelfde bleef: het idee dat een dak méér is dan een afdekking. Het is een gebouwonderdeel waar 30 jaar betrouwbaarheid begint.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <div class="glass rounded-2xl px-5 py-4">
+            <div class="num font-display text-3xl">1959</div>
+            <div class="text-xs text-white/55 mt-1">Oprichting Woerden</div>
+          </div>
+          <div class="glass rounded-2xl px-5 py-4">
+            <div class="num font-display text-3xl">142</div>
+            <div class="text-xs text-white/55 mt-1">Medewerkers</div>
+          </div>
+          <div class="glass rounded-2xl px-5 py-4">
+            <div class="num font-display text-3xl">€38M</div>
+            <div class="text-xs text-white/55 mt-1">Omzet 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- timeline -->
+      <div class="lg:col-span-7 lg:pl-10">
+        <div class="relative">
+          <div class="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-bk-400 via-bk-700 to-transparent"></div>
+          <div class="space-y-10 pl-10">
+            <div>
+              <div class="num font-display text-bk-300 text-sm">1959</div>
+              <h4 class="font-display text-2xl mt-1">De eerste dakrol</h4>
+              <p class="text-white/55 text-sm mt-2 max-w-xl">Jan Bakkenes start met één bestelbus en de overtuiging dat een dak een vak is — geen bijzaak van de bouw.</p>
+            </div>
+            <div>
+              <div class="num font-display text-bk-300 text-sm">1987</div>
+              <h4 class="font-display text-2xl mt-1">KOMO erkenning</h4>
+              <p class="text-white/55 text-sm mt-2 max-w-xl">Eén van de eerste 100 dakdekkers in Nederland met KOMO procescertificering.</p>
+            </div>
+            <div>
+              <div class="num font-display text-bk-300 text-sm">2008</div>
+              <h4 class="font-display text-2xl mt-1">Dakbeheer-platform</h4>
+              <p class="text-white/55 text-sm mt-2 max-w-xl">Lancering eigen digitale beheerlijn waarin elk dak in onderhoud z'n eigen dossier krijgt.</p>
+            </div>
+            <div>
+              <div class="num font-display text-bk-300 text-sm">2025</div>
+              <h4 class="font-display text-2xl mt-1">Bakkenes Totaal Dak</h4>
+              <p class="text-white/55 text-sm mt-2 max-w-xl">Drie disciplines onder één dak: dakdekken, isoleren, groen- en energiedaken — volledig geïntegreerd.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIAL ===================== -->
+<section class="relative py-28 overflow-hidden">
+  <div class="absolute inset-0 gridlines-fine opacity-30"></div>
+  <div class="relative max-w-[1100px] mx-auto px-6 lg:px-10 text-center">
+    <svg viewBox="0 0 24 24" class="w-10 h-10 mx-auto text-bk-400/60" fill="currentColor"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V7zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V7z"/></svg>
+    <p class="mt-6 font-display text-3xl md:text-5xl leading-[1.1] text-balance">
+      "Bakkenes leverde niet een nieuw dak — ze leverden twintig jaar gerustheid. De rapportage na oplevering was zo grondig dat onze verzekeraar er ondertekend onder ging zitten."
+    </p>
+    <div class="mt-10 flex items-center justify-center gap-4">
+      <div class="w-12 h-12 rounded-full bg-gradient-to-br from-bk-400 to-bk-700 grid place-items-center font-display text-lg">M</div>
+      <div class="text-left">
+        <div class="text-sm">Marieke van Dijk</div>
+        <div class="text-xs text-white/55">Hoofd Vastgoed · Gemeente Utrecht</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="relative py-32 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-ink-950 via-ink-900 to-ink-950"></div>
+  <div class="accent-orb w-[700px] h-[700px] bg-bk-600 top-0 left-1/2 -translate-x-1/2 opacity-30"></div>
+  <div class="absolute inset-0 gridlines-fine opacity-30"></div>
+
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <div class="text-[10px] uppercase tracking-[0.3em] text-bk-300 mb-5">— Plan een gesprek</div>
+        <h2 class="font-display font-semibold text-5xl md:text-7xl leading-[0.92] text-balance">
+          Laten we uw <span class="italic font-medium text-white/55">dak</span> bespreken.
+        </h2>
+        <p class="mt-8 text-white/65 text-lg leading-relaxed text-pretty max-w-lg">
+          Binnen 24 uur reactie. Vrijblijvende dakinspectie inclusief drone-scan voor projecten vanaf 500 m².
+        </p>
+
+        <div class="mt-10 space-y-4">
+          <a href="tel:+31348433374" class="flex items-center gap-4 group">
+            <span class="w-12 h-12 rounded-xl glass grid place-items-center text-bk-300 group-hover:bg-bk-500/15 transition">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div>
+              <div class="text-xs text-white/45 uppercase tracking-wider">Bel direct</div>
+              <div class="font-display text-2xl">0348 — 43 33 74</div>
+            </div>
+          </a>
+          <a href="mailto:info@bakkenesdak.nl" class="flex items-center gap-4 group">
+            <span class="w-12 h-12 rounded-xl glass grid place-items-center text-bk-300 group-hover:bg-bk-500/15 transition">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+            </span>
+            <div>
+              <div class="text-xs text-white/45 uppercase tracking-wider">Mail ons</div>
+              <div class="font-display text-2xl">info@bakkenesdak.nl</div>
+            </div>
+          </a>
+          <div class="flex items-center gap-4">
+            <span class="w-12 h-12 rounded-xl glass grid place-items-center text-bk-300">
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 7-8 12-8 12s-8-5-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <div class="text-xs text-white/45 uppercase tracking-wider">Bezoekadres</div>
+              <div class="text-base">Bierbrouwersweg 12a · 3449 HW Woerden</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 flex items-center gap-3">
+          <span class="text-xs text-white/45">Volg ons</span>
+          <div class="h-px flex-1 bg-white/10"></div>
+          <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-xl border hairline grid place-items-center text-white/60 hover:text-white hover:border-bk-400/50 transition">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56V24H.22V8zm7.5 0h4.37v2.2h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v9.16h-4.56v-8.12c0-1.94-.04-4.43-2.7-4.43-2.7 0-3.12 2.11-3.12 4.29V24H7.72V8z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-xl border hairline grid place-items-center text-white/60 hover:text-white hover:border-bk-400/50 transition">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-xl border hairline grid place-items-center text-white/60 hover:text-white hover:border-bk-400/50 transition">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.21.19 2.21.19v2.43h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.9h-2.3v6.98A10 10 0 0 0 22 12z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-xl border hairline grid place-items-center text-white/60 hover:text-white hover:border-bk-400/50 transition">
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM9.8 15.5v-7L15.7 12l-5.9 3.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- form -->
+      <div class="lg:col-span-7">
+        <form id="contactForm" class="glass rounded-3xl p-8 lg:p-10 shadow-glow">
+          <div class="flex items-center justify-between mb-8">
+            <div class="text-xs uppercase tracking-[0.25em] text-white/55">Offerte / dakinspectie</div>
+            <div class="flex items-center gap-1 text-xs text-white/45">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Reactie binnen 24u
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-xs text-white/55 mb-2 block uppercase tracking-wider">Naam</label>
+              <input type="text" class="field" placeholder="Uw volledige naam" required/>
+            </div>
+            <div>
+              <label class="text-xs text-white/55 mb-2 block uppercase tracking-wider">Bedrijf</label>
+              <input type="text" class="field" placeholder="Organisatie"/>
+            </div>
+            <div>
+              <label class="text-xs text-white/55 mb-2 block uppercase tracking-wider">E-mail</label>
+              <input type="email" class="field" placeholder="naam@bedrijf.nl" required/>
+            </div>
+            <div>
+              <label class="text-xs text-white/55 mb-2 block uppercase tracking-wider">Telefoon</label>
+              <input type="tel" class="field" placeholder="06 — 00 00 00 00"/>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label class="text-xs text-white/55 mb-3 block uppercase tracking-wider">Interesse in</label>
+            <div class="flex flex-wrap gap-2" id="chips">
+              <button type="button" data-chip class="chip text-sm px-4 py-2 rounded-full border hairline hover:border-bk-400/60 transition">Renovatie</button>
+              <button type="button" data-chip class="chip text-sm px-4 py-2 rounded-full border hairline hover:border-bk-400/60 transition">Nieuwbouw</button>
+              <button type="button" data-chip class="chip text-sm px-4 py-2 rounded-full border hairline hover:border-bk-400/60 transition">Dakbeheer</button>
+              <button type="button" data-chip class="chip text-sm px-4 py-2 rounded-full border hairline hover:border-bk-400/60 transition">Groendak</button>
+              <button type="button" data-chip class="chip text-sm px-4 py-2 rounded-full border hairline hover:border-bk-400/60 transition">PV-integratie</button>
+              <button type="button" data-chip class="chip text-sm px-4 py-2 rounded-full border hairline hover:border-bk-400/60 transition">Inspectie</button>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label class="text-xs text-white/55 mb-2 block uppercase tracking-wider">Vertel ons over uw project</label>
+            <textarea class="field min-h-[120px]" placeholder="Type gebouw, oppervlakte, gewenste planning…"></textarea>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <p class="text-xs text-white/45 max-w-sm">Door te versturen gaat u akkoord met onze privacy­verklaring. Wij delen uw gegevens nooit met derden.</p>
+            <button type="submit" class="btn-primary inline-flex items-center gap-2 text-white px-7 py-4 rounded-full font-medium">
+              Verstuur aanvraag
+              <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+
+          <div id="thanks" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-400/30 text-emerald-200 text-sm">
+            Bedankt — uw aanvraag staat bij ons binnen. We bellen u op werkdagen binnen 24 uur terug.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="relative bg-ink-950 border-t hairline pt-20 pb-10 overflow-hidden">
+  <div class="absolute inset-0 gridlines opacity-20"></div>
+  <div class="relative max-w-[1400px] mx-auto px-6 lg:px-10">
+
+    <!-- Big wordmark -->
+    <div class="font-display font-bold text-[clamp(80px,14vw,220px)] leading-[0.9] tracking-tight text-white/[.06] select-none">BAKKENES</div>
+
+    <div class="-mt-8 grid lg:grid-cols-12 gap-10 pb-16 border-b hairline">
+      <div class="lg:col-span-4">
+        <div class="flex items-center gap-3">
+          <img src="media/bakkenes-logo.png" alt="Bakkenes Totaaldak" class="h-9 w-auto block" style="filter:drop-shadow(0 2px 12px rgba(94,152,255,.2))"/>
+        </div>
+        <p class="mt-5 text-white/55 text-sm max-w-xs leading-relaxed">Uw innovatieve partner in duurzame daken. Sinds 1959.</p>
+        <div class="mt-6 flex items-center gap-2">
+          <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg border hairline grid place-items-center text-white/55 hover:text-white hover:border-bk-400/50 transition"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56V24H.22V8zm7.5 0h4.37v2.2h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v9.16h-4.56v-8.12c0-1.94-.04-4.43-2.7-4.43-2.7 0-3.12 2.11-3.12 4.29V24H7.72V8z"/></svg></a>
+          <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg border hairline grid place-items-center text-white/55 hover:text-white hover:border-bk-400/50 transition"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg border hairline grid place-items-center text-white/55 hover:text-white hover:border-bk-400/50 transition"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88V14.9H7.9V12h2.5V9.8c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.21.19 2.21.19v2.43h-1.25c-1.23 0-1.61.76-1.61 1.54V12h2.74l-.44 2.9h-2.3v6.98A10 10 0 0 0 22 12z"/></svg></a>
+          <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-lg border hairline grid place-items-center text-white/55 hover:text-white hover:border-bk-400/50 transition"><svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1c.4-1.6.5-3.2.5-4.8s-.1-3.2-.5-4.8zM9.8 15.5v-7L15.7 12l-5.9 3.5z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-4">Diensten</div>
+        <ul class="space-y-2.5 text-sm text-white/70">
+          <li><a href="#" class="hover:text-white">Renovatie</a></li>
+          <li><a href="#" class="hover:text-white">Nieuwbouw</a></li>
+          <li><a href="#" class="hover:text-white">Dakbeheer</a></li>
+          <li><a href="#" class="hover:text-white">Groendaken</a></li>
+          <li><a href="#" class="hover:text-white">PV-integratie</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-4">Bedrijf</div>
+        <ul class="space-y-2.5 text-sm text-white/70">
+          <li><a href="#" class="hover:text-white">Over ons</a></li>
+          <li><a href="#" class="hover:text-white">Werken bij</a></li>
+          <li><a href="#" class="hover:text-white">Certificeringen</a></li>
+          <li><a href="#" class="hover:text-white">Pers</a></li>
+          <li><a href="#" class="hover:text-white">Nieuwsbrief</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-4">
+        <div class="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-4">Hoofdvestiging</div>
+        <div class="text-sm text-white/70 leading-relaxed">
+          Bakkenes Dakdekkersbedrijf bv<br/>
+          Bierbrouwersweg 12a · 3449 HW Woerden<br/>
+          KvK 30000000 · BTW NL000000000B01
+        </div>
+        <div class="mt-5 flex items-center gap-3 text-sm">
+          <a href="tel:+31348433374" class="text-bk-200 hover:text-white">0348 — 43 33 74</a>
+          <span class="text-white/20">·</span>
+          <a href="mailto:info@bakkenesdak.nl" class="text-bk-200 hover:text-white">info@bakkenesdak.nl</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap items-center justify-between gap-4 text-xs text-white/40">
+      <div>© 1959–2025 Bakkenes Totaal Dak. Alle rechten voorbehouden.</div>
+      <div class="flex items-center gap-5">
+        <a href="#" class="hover:text-white/70">Privacy</a>
+        <a href="#" class="hover:text-white/70">Cookies</a>
+        <a href="#" class="hover:text-white/70">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav scrolled state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('nav-scrolled', window.scrollY > 30);
+  document.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // Interest chip toggling
+  document.querySelectorAll('[data-chip]').forEach(b => {
+    b.addEventListener('click', () => {
+      b.classList.toggle('bg-bk-500/20');
+      b.classList.toggle('border-bk-400/60');
+      b.classList.toggle('text-bk-100');
+    });
+  });
+
+  // Form submit -> thanks
+  const f = document.getElementById('contactForm');
+  if (f) f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('thanks').classList.remove('hidden');
+    f.querySelectorAll('input,textarea').forEach(el => el.value = '');
+    document.querySelectorAll('[data-chip].bg-bk-500\\/20').forEach(c => c.classList.remove('bg-bk-500/20','border-bk-400/60','text-bk-100'));
+  });
+
+  // Smooth scroll for in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); window.scrollTo({top: el.getBoundingClientRect().top + window.scrollY - 60, behavior:'smooth'}); }
+      }
+    });
+  });
+</script>
+</body>
+</html>
